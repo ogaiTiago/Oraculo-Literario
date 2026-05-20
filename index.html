@@ -1,52 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Primeira Página</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #007BFF;
-        }
-        .botao {
-            display: inline-block;
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-        .botao:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Oráculo Astrológico Literário: uma consulta estática que revela contos a partir da data e hora de nascimento."
+    />
+    <title>Oráculo Astrológico Literário</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <nav class="review-nav" aria-label="Revisão dos contos">
+      <button id="prev-story" type="button">Voltar</button>
+      <button id="next-story" type="button">Avançar</button>
+    </nav>
 
-    <h1>Olá, Mundo!</h1>
-    <p>Este é um exemplo de uma página HTML básica, estilizada e pronta para usar.</p>
-    
-    <h3>O que tem aqui?</h3>
-    <ul>
-        <li>Estrutura oficial do HTML5.</li>
-        <li>Tags de cabeçalho e parágrafo.</li>
-        <li>Uma lista simples.</li>
-        <li>Um pouco de CSS para não ficar com cara de internet dos anos 90.</li>
-    </ul>
+    <main class="page">
+      <header class="topbar">
+        <a href="./">Oráculo Astrológico Literário</a>
+        <span>24 contos / 12 signos</span>
+      </header>
 
-    <a href="#" class="botao">Clique Aqui</a>
+      <section class="hero">
+        <div class="intro">
+          <h1>Descubra o conto de Caio Fernando Abreu que acompanha o seu mapa de nascimento.</h1>
 
-</body>
+          <div id="oracle-form" class="form">
+            <label>
+              Data de nascimento
+              <input id="birth-date" type="date" required />
+            </label>
+
+            <label>
+              Hora de nascimento
+              <input id="birth-time" type="time" required />
+            </label>
+
+            <button id="reveal-button" type="button">Revelar conto</button>
+            <p id="form-error" class="error" role="alert" aria-live="polite"></p>
+          </div>
+
+          <section id="result" class="result" hidden aria-live="polite">
+            <div class="result-meta">
+              <span id="result-symbol" aria-hidden="true"></span>
+              <div>
+                <p id="result-sign"></p>
+                <p id="result-period"></p>
+              </div>
+            </div>
+
+            <p id="result-book" class="book"></p>
+            <h2 id="result-title"></h2>
+            <p class="why"><strong>Por que combina:</strong> <span id="result-why"></span></p>
+            <div id="story-block" class="story">
+              <div id="result-story"></div>
+            </div>
+            <button id="reset-result" type="button" class="secondary">Refazer consulta</button>
+          </section>
+        </div>
+      </section>
+
+    </main>
+
+    <script src="./assets/stories.js"></script>
+    <script src="./assets/app.js"></script>
+  </body>
 </html>
