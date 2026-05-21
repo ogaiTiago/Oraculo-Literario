@@ -11,6 +11,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   background:
@@ -139,30 +143,6 @@ button {
 
 button:hover {
   background: #701734;
-}
-
-.review-nav {
-  display: flex;
-  gap: 8px;
-  position: fixed;
-  right: 18px;
-  top: 18px;
-  z-index: 10;
-}
-
-.review-nav button {
-  min-height: 38px;
-  border: 1px solid var(--line);
-  background: rgba(255, 253, 248, 0.94);
-  color: var(--ink);
-  font-size: 0.72rem;
-  padding: 0 12px;
-}
-
-.review-nav button:hover {
-  border-color: var(--wine);
-  background: var(--card);
-  color: var(--wine);
 }
 
 .error {
