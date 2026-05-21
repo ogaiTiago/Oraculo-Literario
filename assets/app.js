@@ -15,7 +15,6 @@ const ranges = [
 
 const $ = (id) => document.getElementById(id);
 const periodLabels = { day: "Dia", night: "Noite" };
-let reviewIndex = -1;
 
 function getSign(date) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
@@ -71,8 +70,7 @@ function reveal() {
     return;
   }
 
-  const storyIndex = window.stories.findIndex((item) => item.sign === sign && item.period === period);
-  const story = window.stories[storyIndex];
+  const story = window.stories.find((item) => item.sign === sign && item.period === period);
 
   if (!story) {
     error.textContent = "Não encontrei um conto para essa combinação.";
@@ -80,19 +78,11 @@ function reveal() {
   }
 
   renderStory(story);
-  reviewIndex = storyIndex;
-}
-
-function showReviewStory(index) {
-  reviewIndex = (index + window.stories.length) % window.stories.length;
-  $("form-error").textContent = "";
-  $("next-story").hidden = false;
-  renderStory(window.stories[reviewIndex]);
+  $("oracle-form").hidden = true;
+  $("result").scrollIntoView?.({ block: "start" });
 }
 
 $("reveal-button").addEventListener("click", reveal);
-$("prev-story").addEventListener("click", () => showReviewStory(reviewIndex - 1));
-$("next-story").addEventListener("click", () => showReviewStory(reviewIndex + 1));
 
 ["birth-date", "birth-time"].forEach((id) => {
   $(id).addEventListener("keydown", (event) => {
@@ -103,7 +93,7 @@ $("next-story").addEventListener("click", () => showReviewStory(reviewIndex + 1)
 $("reset-result").addEventListener("click", () => {
   $("birth-date").value = "";
   $("birth-time").value = "";
+  $("oracle-form").hidden = false;
   $("result").hidden = true;
-  reviewIndex = -1;
   $("form-error").textContent = "";
 });
